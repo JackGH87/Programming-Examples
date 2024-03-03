@@ -1,0 +1,32 @@
+import sys
+import random
+from pyfiglet import Figlet
+
+figlet = Figlet()
+
+
+if len(sys.argv) == 3 and (sys.argv[1] == '-f' or sys.argv[1] == '--font'):
+    randomf = False
+elif len(sys.argv) == 1:
+    randomf = True
+else:
+    sys.exit('Invalid usage')
+
+
+if randomf == False:
+    try:
+        figlet.setFont(font=sys.argv[2])
+        text = input('Input: ')
+        print('Output: ')
+        print(figlet.renderText(text))
+    except:
+        sys.exit('Invalid usage')
+elif randomf == True:
+    figlet.getFonts()
+    font = random.choice(figlet.getFonts())
+    figlet.setFont(font=font)
+    text = input('Input: ')
+    print('Output: ')
+    print(figlet.renderText(text))
+else:
+    sys.exit('Invalid usage')
